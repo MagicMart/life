@@ -5,12 +5,19 @@ const matrixInitializer = Array.from({ length: 20 }, () =>
     Array.from({ length: 20 }, () => 0)
 );
 
+const container: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "center",
+};
+
 const matrixContainer: React.CSSProperties = {
     display: "flex",
     flexWrap: "wrap",
     width: "300px",
     height: "300px",
     border: "1px solid black",
+    margin: "0 auto",
 };
 
 const appReducer = (
@@ -33,7 +40,7 @@ function App() {
     const [state, dispatch] = React.useReducer(appReducer, matrixInitializer);
 
     return (
-        <div>
+        <div style={container}>
             <h1>Game of Life</h1>
             <div style={matrixContainer}>
                 {state.map((row, i) =>
