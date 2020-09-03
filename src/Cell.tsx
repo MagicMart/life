@@ -9,7 +9,10 @@ const cellStyles: React.CSSProperties = {
 type CellProps = {
     isAlive: boolean;
     coord: [number, number];
-    dispatch: Function;
+    dispatch: React.Dispatch<{
+        type: string;
+        payload: [number, number];
+    }>;
 };
 
 function Cell({ isAlive, coord, dispatch }: CellProps) {
