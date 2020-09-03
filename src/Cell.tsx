@@ -8,11 +8,20 @@ const cellStyles: React.CSSProperties = {
 
 type CellProps = {
     isAlive: boolean;
+    coord: [number, number];
+    dispatch: Function;
 };
 
-function Cell({ isAlive }: CellProps) {
+function Cell({ isAlive, coord, dispatch }: CellProps) {
     const color = isAlive ? "green" : "transparent";
-    return <div style={{ ...cellStyles, ...{ backgroundColor: color } }}></div>;
+    return (
+        <div
+            onClick={() =>
+                dispatch({ type: "TOGGLE", payload: [coord[0], coord[1]] })
+            }
+            style={{ ...cellStyles, ...{ backgroundColor: color } }}
+        ></div>
+    );
 }
 
 export default Cell;
