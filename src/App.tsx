@@ -1,7 +1,7 @@
 import React from "react";
 import Cell from "./Cell";
 
-const matrixInitializer = Array.from({ length: 20 }, () =>
+const matrix = Array.from({ length: 20 }, () =>
     Array.from({ length: 20 }, () => 0)
 );
 
@@ -37,7 +37,7 @@ const appReducer = (
 };
 
 function App() {
-    const [state, dispatch] = React.useReducer(appReducer, matrixInitializer);
+    const [state, dispatch] = React.useReducer(appReducer, matrix);
 
     return (
         <div style={container}>
@@ -47,6 +47,7 @@ function App() {
                     row.map((num, j) => {
                         return (
                             <Cell
+                                key={`${[i, j]}`}
                                 coord={[i, j]}
                                 dispatch={dispatch}
                                 isAlive={num === 1 ? true : false}
