@@ -10,7 +10,7 @@ type CellProps = {
     isAlive: boolean;
     coord: [number, number];
     dispatch: React.Dispatch<{
-        type: string;
+        type: "TOGGLE";
         payload: [number, number];
     }>;
 };

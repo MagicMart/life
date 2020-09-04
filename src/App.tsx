@@ -1,5 +1,6 @@
 import React from "react";
 import Cell from "./Cell";
+import { lifeOrDeath } from "./lifeOrDeath";
 
 const matrix = Array.from({ length: 20 }, () =>
     Array.from({ length: 20 }, () => 0)
@@ -20,30 +21,41 @@ const matrixContainer: React.CSSProperties = {
     margin: "0 auto",
 };
 
-const appReducer = (
-    state: number[][],
-    action: { type: string; payload: [number, number] }
-) => {
-    const [row, col] = action.payload;
+type AppState = {
+    matrix: number[][];
+};
+
+type Action =
+    | {
+          type: "TOGGLE";
+          payload: [number, number];
+      }
+    | { type: "CLICK"; payload: number[][] };
+
+const appReducer = (state: AppState, action: Action) => {
     switch (action.type) {
         case "TOGGLE": {
-            const newState = state.map((row) => row.slice());
-            newState[row][col] = newState[row][col] === 0 ? 1 : 0;
-            return [...newState];
+            const [row, col] = action.payload;
+            const matrix = state.matrix.map((arr) => arr.slice());
+            matrix[row][col] = matrix[row][col] === 0 ? 1 : 0;
+            return { ...state, matrix };
+        }
+        case "CLICK": {
+            return { ...state, matrix: action.payload };
         }
         default:
-            return state;
+            throw new Error(`Unknown action type`);
     }
 };
 
 function App() {
-    const [state, dispatch] = React.useReducer(appReducer, matrix);
+    const [state, dispatch] = React.useReducer(appReducer, { matrix });
 
     return (
         <div style={container}>
             <h1>Game of Life</h1>
             <div style={matrixContainer}>
-                {state.map((row, i) =>
+                {state.matrix.map((row, i) =>
                     row.map((num, j) => {
                         return (
                             <Cell
@@ -57,7 +69,17 @@ function App() {
                 )}
             </div>
             <div>
-                <button className="myButton">Click</button>
+                <button
+                    onClick={() =>
+                        dispatch({
+                            type: "CLICK",
+                            payload: lifeOrDeath(state.matrix),
+                        })
+                    }
+                    className="myButton"
+                >
+                    Tick
+                </button>
             </div>
         </div>
     );
