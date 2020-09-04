@@ -56,6 +56,9 @@ function App() {
                     })
                 )}
             </div>
+            <div>
+                <button className="myButton">Click</button>
+            </div>
         </div>
     );
 }
