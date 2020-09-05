@@ -35,7 +35,6 @@ type Action =
     | { type: "CLICK"; payload: number[][] }
     | {
           type: "IS_TICKING";
-          payload: boolean;
       };
 
 const appReducer = (state: AppState, action: Action): AppState => {
@@ -50,6 +49,8 @@ const appReducer = (state: AppState, action: Action): AppState => {
             return { ...state, ticking: !state.ticking };
         }
         case "CLICK": {
+            if (state.matrix.toString() === action.payload.toString())
+                return { ...state, ticking: false };
             return { ...state, matrix: action.payload };
         }
         default:
@@ -102,7 +103,6 @@ function App() {
                     onClick={() =>
                         dispatch({
                             type: "IS_TICKING",
-                            payload: !state.ticking,
                         })
                     }
                     className="myButton"
