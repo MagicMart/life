@@ -17,6 +17,7 @@ type CellProps = {
 
 function Cell({ isAlive, coord, dispatch }: CellProps) {
     const color = isAlive ? "green" : "transparent";
+    console.log("cell");
     return (
         <div
             onClick={() =>
@@ -30,4 +31,7 @@ function Cell({ isAlive, coord, dispatch }: CellProps) {
     );
 }
 
-export default Cell;
+export default React.memo(
+    Cell,
+    (prevProps, nextProps) => prevProps.isAlive === nextProps.isAlive
+);
