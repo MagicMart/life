@@ -32,7 +32,7 @@ type Action =
       }
     | { type: "CLICK"; payload: number[][] };
 
-const appReducer = (state: AppState, action: Action) => {
+const appReducer = (state: AppState, action: Action): AppState => {
     switch (action.type) {
         case "TOGGLE": {
             const [row, col] = action.payload;
