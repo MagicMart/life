@@ -1,15 +1,15 @@
 /**
- * Applies the rules of the "game of life" to the matrix
+ * Applies the rules of the "game of life" to the current matrix
  * and returns the new matrix
  */
-export function lifeOrDeath(dataMatrix: number[][]) {
+export function lifeOrDeath(dataMatrix: number[][]): number[][] {
     const size = dataMatrix[0].length - 1;
 
     /**check to see if the row or column coordinate
      * is outside the matrix. If it is,
      * it evaluates to the opposite side of the matrix
      */
-    function checkEdge(num: number) {
+    function checkEdge(num: number): number {
         if (num < 0) {
             num = size;
         } else if (num > size) {
@@ -20,8 +20,8 @@ export function lifeOrDeath(dataMatrix: number[][]) {
 
     /**nextMatrix will be the next state of dataMatrix
     as determined by the rules */
-    const nextMatrix = dataMatrix.map((row, i) => {
-        return row.map((current, j) => {
+    const nextMatrix = dataMatrix.map((row, i): number[] => {
+        return row.map((current, j): number => {
             /** sum is the sum of values in the surrounding cells
              * (in clockwise order)
              */
