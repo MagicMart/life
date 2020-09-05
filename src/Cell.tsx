@@ -10,7 +10,7 @@ type CellProps = {
     isAlive: boolean;
     coord: [number, number];
     dispatch: React.Dispatch<{
-        type: "TOGGLE";
+        type: "TOGGLE_PAINT";
         payload: [number, number];
     }>;
 };
@@ -20,7 +20,10 @@ function Cell({ isAlive, coord, dispatch }: CellProps) {
     return (
         <div
             onClick={() =>
-                dispatch({ type: "TOGGLE", payload: [coord[0], coord[1]] })
+                dispatch({
+                    type: "TOGGLE_PAINT",
+                    payload: [coord[0], coord[1]],
+                })
             }
             style={{ ...cellStyles, ...{ backgroundColor: color } }}
         ></div>

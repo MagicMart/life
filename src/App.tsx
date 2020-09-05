@@ -27,14 +27,14 @@ type AppState = {
 
 type Action =
     | {
-          type: "TOGGLE";
+          type: "TOGGLE_PAINT";
           payload: [number, number];
       }
     | { type: "CLICK"; payload: number[][] };
 
 const appReducer = (state: AppState, action: Action): AppState => {
     switch (action.type) {
-        case "TOGGLE": {
+        case "TOGGLE_PAINT": {
             const [row, col] = action.payload;
             const matrix = state.matrix.map((arr) => arr.slice());
             matrix[row][col] = matrix[row][col] === 0 ? 1 : 0;
