@@ -35,7 +35,8 @@ type Action =
     | { type: "CLICK"; payload: number[][] }
     | {
           type: "IS_TICKING";
-      };
+      }
+    | { type: "SPEED"; payload: number };
 
 const appReducer = (state: AppState, action: Action): AppState => {
     switch (action.type) {
@@ -53,6 +54,9 @@ const appReducer = (state: AppState, action: Action): AppState => {
                 return { ...state, ticking: false };
             return { ...state, matrix: action.payload };
         }
+        case "SPEED": {
+            return { ...state, speed: action.payload };
+        }
         default:
             throw new Error(`Unknown action type`);
     }
@@ -62,7 +66,7 @@ function App() {
     const [state, dispatch] = React.useReducer(appReducer, {
         matrix,
         ticking: false,
-        speed: 200,
+        speed: 500,
     });
     const timerID: { current: number | undefined } = React.useRef();
 
@@ -99,21 +103,39 @@ function App() {
                 )}
             </div>
             <div>
-                <button
-                    onClick={() =>
-                        dispatch({
-                            type: "IS_TICKING",
-                        })
-                    }
-                    className="myButton"
-                    style={
-                        state.ticking
-                            ? { background: "red" }
-                            : { background: "green" }
-                    }
-                >
-                    Tick
-                </button>
+                <div className="controls">
+                    <button
+                        onClick={() =>
+                            dispatch({
+                                type: "IS_TICKING",
+                            })
+                        }
+                        className="myButton"
+                        style={
+                            state.ticking
+                                ? { background: "red" }
+                                : { background: "green" }
+                        }
+                    >
+                        Tick
+                    </button>
+
+                    <input
+                        type="range"
+                        min="100"
+                        max="900"
+                        step="10"
+                        onChange={(e) =>
+                            dispatch({
+                                type: "SPEED",
+                                payload: Number(e.target.value),
+                            })
+                        }
+                        value={state.speed}
+                        className="slider"
+                        id="myRange"
+                    />
+                </div>
             </div>
         </div>
     );

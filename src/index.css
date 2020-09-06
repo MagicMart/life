@@ -23,6 +23,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 .myButton {
   box-shadow: 0px 10px 14px -7px #3e7327;
   background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
@@ -49,4 +51,14 @@ body {
 .myButton:active {
   position: relative;
   top: 1px;
+}
+
+
+#myRange {
+  direction: rtl;
+}
+
+#myRange {
+  height: 1px;
+  outline: none;
 }
