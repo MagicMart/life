@@ -32,10 +32,8 @@ type Action =
           type: "TOGGLE_PAINT";
           payload: [number, number];
       }
-    | { type: "CLICK"; payload: number[][] }
-    | {
-          type: "IS_TICKING";
-      }
+    | { type: "CLICK" }
+    | { type: "IS_TICKING" }
     | { type: "SPEED"; payload: number };
 
 const appReducer = (state: AppState, action: Action): AppState => {
@@ -50,9 +48,10 @@ const appReducer = (state: AppState, action: Action): AppState => {
             return { ...state, ticking: !state.ticking };
         }
         case "CLICK": {
-            if (state.matrix.toString() === action.payload.toString())
+            const newMatrix = lifeOrDeath(state.matrix);
+            if (state.matrix.toString() === newMatrix.toString())
                 return { ...state, ticking: false };
-            return { ...state, matrix: action.payload };
+            return { ...state, matrix: newMatrix };
         }
         case "SPEED": {
             return { ...state, speed: action.payload };
@@ -73,17 +72,19 @@ function App() {
     React.useEffect(() => {
         console.log("use effect");
         if (!state.ticking) return;
-        timerID.current = window.setTimeout(
+        timerID.current = window.setInterval(
             () =>
                 dispatch({
                     type: "CLICK",
-                    payload: lifeOrDeath(state.matrix),
                 }),
             state.speed
         );
 
-        return () => window.clearTimeout(timerID.current);
-    }, [state.matrix, state.ticking, state.speed]);
+        return function () {
+            console.log("cleared");
+            window.clearInterval(timerID.current);
+        };
+    }, [state.ticking, state.speed]);
 
     return (
         <div style={container}>
