@@ -21,11 +21,11 @@ const matrixContainer: React.CSSProperties = {
     margin: "0 auto",
 };
 
-type AppState = {
+interface AppState {
     matrix: number[][];
     ticking: boolean;
     speed: number;
-};
+}
 
 type Action =
     | {

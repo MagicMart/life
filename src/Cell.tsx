@@ -6,14 +6,14 @@ const cellStyles: React.CSSProperties = {
     border: "1px solid black",
 };
 
-type CellProps = {
+interface CellProps {
     isAlive: boolean;
     coord: [number, number];
     dispatch: React.Dispatch<{
         type: "TOGGLE_PAINT";
         payload: [number, number];
     }>;
-};
+}
 
 function Cell({ isAlive, coord, dispatch }: CellProps) {
     const color = isAlive ? "green" : "transparent";
