@@ -131,7 +131,7 @@ function App() {
                     type="range"
                     min="100"
                     max="900"
-                    step="10"
+                    step="100"
                     onChange={(e) =>
                         dispatch({
                             type: "CHANGE_RANGE_VALUE",
