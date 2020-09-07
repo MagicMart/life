@@ -33,9 +33,9 @@ type Action =
           type: "TOGGLE_PAINT";
           payload: [number, number];
       }
-    | { type: "CLICK" }
+    | { type: "LIFE_OR_DEATH" }
     | { type: "IS_TICKING" }
-    | { type: "SPEED"; payload: number };
+    | { type: "CHANGE_SPEED"; payload: number };
 
 const appReducer = (state: AppState, action: Action): AppState => {
     switch (action.type) {
@@ -48,13 +48,13 @@ const appReducer = (state: AppState, action: Action): AppState => {
         case "IS_TICKING": {
             return { ...state, ticking: !state.ticking };
         }
-        case "CLICK": {
+        case "LIFE_OR_DEATH": {
             const newMatrix = lifeOrDeath(state.matrix);
             if (state.matrix.toString() === newMatrix.toString())
                 return { ...state, ticking: false };
             return { ...state, matrix: newMatrix };
         }
-        case "SPEED": {
+        case "CHANGE_SPEED": {
             return { ...state, speed: action.payload };
         }
         default:
@@ -76,7 +76,7 @@ function App() {
         timerID.current = window.setInterval(
             () =>
                 dispatch({
-                    type: "CLICK",
+                    type: "LIFE_OR_DEATH",
                 }),
             state.speed
         );
@@ -128,7 +128,7 @@ function App() {
                     step="10"
                     onChange={(e) =>
                         dispatch({
-                            type: "SPEED",
+                            type: "CHANGE_SPEED",
                             payload: Number(e.target.value),
                         })
                     }
