@@ -9,7 +9,8 @@ const matrix = Array.from({ length: 20 }, () =>
 const container: React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
-    textAlign: "center",
+    justifyContent: "center",
+    alignItems: "center",
 };
 
 const matrixContainer: React.CSSProperties = {
@@ -103,40 +104,38 @@ function App() {
                     })
                 )}
             </div>
-            <div>
-                <div className="controls">
-                    <button
-                        onClick={() =>
-                            dispatch({
-                                type: "IS_TICKING",
-                            })
-                        }
-                        className="myButton"
-                        style={
-                            state.ticking
-                                ? { background: "red" }
-                                : { background: "green" }
-                        }
-                    >
-                        Tick
-                    </button>
+            <div style={{ display: "flex", marginTop: "20px" }}>
+                <button
+                    onClick={() =>
+                        dispatch({
+                            type: "IS_TICKING",
+                        })
+                    }
+                    className="myButton"
+                    style={
+                        state.ticking
+                            ? { background: "red" }
+                            : { background: "green" }
+                    }
+                >
+                    Tick
+                </button>
 
-                    <input
-                        type="range"
-                        min="100"
-                        max="900"
-                        step="10"
-                        onChange={(e) =>
-                            dispatch({
-                                type: "SPEED",
-                                payload: Number(e.target.value),
-                            })
-                        }
-                        value={state.speed}
-                        className="slider"
-                        id="myRange"
-                    />
-                </div>
+                <input
+                    type="range"
+                    min="100"
+                    max="900"
+                    step="10"
+                    onChange={(e) =>
+                        dispatch({
+                            type: "SPEED",
+                            payload: Number(e.target.value),
+                        })
+                    }
+                    value={state.speed}
+                    className="slider"
+                    id="myRange"
+                />
             </div>
         </div>
     );
