@@ -26,6 +26,7 @@ interface AppState {
     matrix: number[][];
     ticking: boolean;
     speed: number;
+    range_value: number;
 }
 
 type Action =
@@ -35,7 +36,7 @@ type Action =
       }
     | { type: "LIFE_OR_DEATH" }
     | { type: "IS_TICKING" }
-    | { type: "CHANGE_SPEED"; payload: number };
+    | { type: "CHANGE_RANGE_VALUE"; payload: number };
 
 const appReducer = (state: AppState, action: Action): AppState => {
     switch (action.type) {
@@ -54,8 +55,13 @@ const appReducer = (state: AppState, action: Action): AppState => {
                 return { ...state, ticking: false };
             return { ...state, matrix: newMatrix };
         }
-        case "CHANGE_SPEED": {
-            return { ...state, speed: action.payload };
+
+        case "CHANGE_RANGE_VALUE": {
+            return {
+                ...state,
+                range_value: action.payload,
+                speed: 1000 - action.payload,
+            };
         }
         default:
             throw new Error(`Unknown action type`);
@@ -67,6 +73,7 @@ function App() {
         matrix,
         ticking: false,
         speed: 500,
+        range_value: 500,
     });
     const timerID: { current: number | undefined } = React.useRef();
 
@@ -120,7 +127,6 @@ function App() {
                 >
                     Tick
                 </button>
-
                 <input
                     type="range"
                     min="100"
@@ -128,11 +134,11 @@ function App() {
                     step="10"
                     onChange={(e) =>
                         dispatch({
-                            type: "CHANGE_SPEED",
+                            type: "CHANGE_RANGE_VALUE",
                             payload: Number(e.target.value),
                         })
                     }
-                    value={state.speed}
+                    value={state.range_value}
                     className="slider"
                     id="myRange"
                 />

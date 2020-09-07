@@ -55,7 +55,5 @@ body {
 
 
 #myRange {
-  direction: rtl;
-  height: 1px;
-  margin: 20px;
+  margin-left: 10px;
 }
