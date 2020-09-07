@@ -17,7 +17,7 @@ const matrixContainer: React.CSSProperties = {
     flexWrap: "wrap",
     width: "300px",
     height: "300px",
-    border: "1px solid black",
+    outline: "1px solid black",
     margin: "0 auto",
 };
 

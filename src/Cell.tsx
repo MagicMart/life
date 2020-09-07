@@ -3,7 +3,7 @@ import React from "react";
 const cellStyles: React.CSSProperties = {
     width: "calc(100% / 20)",
     height: "calc(100% / 20)",
-    border: "1px solid black",
+    outline: "1px solid black",
 };
 
 interface CellProps {
