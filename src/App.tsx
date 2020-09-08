@@ -36,7 +36,7 @@ type Action =
       }
     | { type: "LIFE_OR_DEATH" }
     | { type: "IS_TICKING" }
-    | { type: "CHANGE_RANGE_VALUE"; payload: number };
+    | { type: "SET_RANGE_VALUE_&_SPEED"; payload: number };
 
 const appReducer = (state: AppState, action: Action): AppState => {
     switch (action.type) {
@@ -56,7 +56,7 @@ const appReducer = (state: AppState, action: Action): AppState => {
             return { ...state, matrix: newMatrix };
         }
 
-        case "CHANGE_RANGE_VALUE": {
+        case "SET_RANGE_VALUE_&_SPEED": {
             return {
                 ...state,
                 range_value: action.payload,
@@ -134,7 +134,7 @@ function App() {
                     step="100"
                     onChange={(e) =>
                         dispatch({
-                            type: "CHANGE_RANGE_VALUE",
+                            type: "SET_RANGE_VALUE_&_SPEED",
                             payload: Number(e.target.value),
                         })
                     }
