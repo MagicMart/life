@@ -2,6 +2,13 @@ import React from "react";
 import Cell from "./Cell";
 import { lifeOrDeath } from "./lifeOrDeath";
 
+// the range slider values.
+// the speed (setInterval ms) mirrors its values
+const MAX_RANGE = 900;
+const MIN_RANGE = 100;
+const MID_RANGE = (MAX_RANGE + MIN_RANGE) / 2;
+const STEP = MIN_RANGE;
+
 const matrix = Array.from({ length: 20 }, () =>
     Array.from({ length: 20 }, () => 0)
 );
@@ -60,7 +67,8 @@ const appReducer = (state: AppState, action: Action): AppState => {
             return {
                 ...state,
                 range_value: action.payload,
-                speed: 1000 - action.payload,
+                // the speed value mirrors the range value
+                speed: MIN_RANGE + MAX_RANGE - action.payload,
             };
         }
         default:
@@ -72,8 +80,8 @@ function App() {
     const [state, dispatch] = React.useReducer(appReducer, {
         matrix,
         ticking: false,
-        speed: 500,
-        range_value: 500,
+        speed: MID_RANGE,
+        range_value: MID_RANGE,
     });
     const timerID: { current: number | undefined } = React.useRef();
 
@@ -129,9 +137,9 @@ function App() {
                 </button>
                 <input
                     type="range"
-                    min="100"
-                    max="900"
-                    step="100"
+                    min={MIN_RANGE}
+                    max={MAX_RANGE}
+                    step={STEP}
                     onChange={(e) =>
                         dispatch({
                             type: "SET_RANGE_VALUE_&_SPEED",
