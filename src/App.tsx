@@ -42,7 +42,7 @@ type Action =
           payload: [number, number];
       }
     | { type: "LIFE_OR_DEATH" }
-    | { type: "IS_TICKING" }
+    | { type: "TOGGLE_TICKING" }
     | { type: "SET_RANGE_VALUE_&_SPEED"; payload: number };
 
 const appReducer = (state: AppState, action: Action): AppState => {
@@ -53,7 +53,7 @@ const appReducer = (state: AppState, action: Action): AppState => {
             matrix[row][col] = matrix[row][col] === 0 ? 1 : 0;
             return { ...state, matrix };
         }
-        case "IS_TICKING": {
+        case "TOGGLE_TICKING": {
             return { ...state, ticking: !state.ticking };
         }
         case "LIFE_OR_DEATH": {
@@ -123,7 +123,7 @@ function App() {
                 <button
                     onClick={() =>
                         dispatch({
-                            type: "IS_TICKING",
+                            type: "TOGGLE_TICKING",
                         })
                     }
                     className="myButton"
