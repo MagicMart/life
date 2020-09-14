@@ -1,4 +1,4 @@
-type Matrix = (0 | 1)[][];
+export type Matrix = (0 | 1)[][];
 
 /**
  * Applies the rules of the "game of life" to the current matrix

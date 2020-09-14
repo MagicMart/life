@@ -1,6 +1,6 @@
 import React from "react";
 import Cell from "./Cell";
-import { lifeOrDeath } from "./lifeOrDeath";
+import { lifeOrDeath, Matrix } from "./lifeOrDeath";
 
 // the range slider values.
 // the speed (setInterval ms) mirrors its values
@@ -8,8 +8,6 @@ const MAX_RANGE = 900;
 const MIN_RANGE = 100;
 const MID_RANGE = (MAX_RANGE + MIN_RANGE) / 2;
 const STEP = MIN_RANGE;
-
-type Matrix = (0 | 1)[][];
 
 const matrix: Matrix = Array.from({ length: 20 }, () =>
     Array.from({ length: 20 }, () => 0)
