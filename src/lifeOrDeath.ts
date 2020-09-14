@@ -11,13 +11,12 @@ export function lifeOrDeath(dataMatrix: Matrix): Matrix {
      * is outside the matrix. If it is,
      * it evaluates to the opposite side of the matrix
      */
-    function checkEdge(num: number): number {
-        if (num < 0) {
-            num = size;
-        } else if (num > size) {
-            num = 0;
-        }
-        return num;
+    function checkEdge(coord: number): number {
+        if (coord < 0) return size;
+
+        if (coord > size) return 0;
+
+        return coord;
     }
 
     /**nextMatrix will be the next state of dataMatrix
