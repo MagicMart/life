@@ -149,6 +149,7 @@ function App() {
                     value={state.range_value}
                     className="slider"
                     id="myRange"
+                    aria-label="change speed"
                 />
             </div>
         </div>
