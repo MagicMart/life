@@ -21,7 +21,7 @@ export function lifeOrDeath(dataMatrix: Matrix): Matrix {
 
     /**nextMatrix will be the next state of dataMatrix
     as determined by the rules */
-    const nextMatrix: Matrix = dataMatrix.map((row, i): (0 | 1)[] => {
+    return dataMatrix.map((row, i): (0 | 1)[] => {
         return row.map((current, j): 0 | 1 => {
             /** sum is the sum of values in the surrounding cells
              * (in clockwise order)
@@ -48,6 +48,4 @@ export function lifeOrDeath(dataMatrix: Matrix): Matrix {
             }
         });
     });
-
-    return nextMatrix;
 }
