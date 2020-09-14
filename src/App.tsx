@@ -9,7 +9,9 @@ const MIN_RANGE = 100;
 const MID_RANGE = (MAX_RANGE + MIN_RANGE) / 2;
 const STEP = MIN_RANGE;
 
-const matrix = Array.from({ length: 20 }, () =>
+type Matrix = (0 | 1)[][];
+
+const matrix: Matrix = Array.from({ length: 20 }, () =>
     Array.from({ length: 20 }, () => 0)
 );
 
@@ -30,7 +32,7 @@ const matrixContainer: React.CSSProperties = {
 };
 
 interface AppState {
-    matrix: number[][];
+    matrix: Matrix;
     ticking: boolean;
     speed: number;
     range_value: number;
