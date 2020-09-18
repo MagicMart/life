@@ -13,13 +13,6 @@ const matrix: Matrix = Array.from({ length: 20 }, () =>
     Array.from({ length: 20 }, () => 0)
 );
 
-const container: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-};
-
 const matrixContainer: React.CSSProperties = {
     display: "flex",
     flexWrap: "wrap",
@@ -103,7 +96,7 @@ function App() {
     }, [state.ticking, state.speed]);
 
     return (
-        <div style={container}>
+        <div className="container">
             <h1>Game of Life</h1>
             <div style={matrixContainer}>
                 {state.matrix.map((row, i) =>

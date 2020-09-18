@@ -23,7 +23,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .myButton {
   box-shadow: 0px 10px 14px -7px #3e7327;
