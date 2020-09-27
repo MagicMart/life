@@ -97,7 +97,7 @@ function App() {
 
     return (
         <div className="container">
-            <h1 style={{ color: "green" }}>Game of Life</h1>
+            <h1 style={{ color: "var(--green)" }}>Game of Life</h1>
             <div style={matrixContainer}>
                 {state.matrix.map((row, i) =>
                     row.map((num, j) => {

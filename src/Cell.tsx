@@ -1,7 +1,5 @@
 import React from "react";
 
-const ALIVE_BG = "green";
-
 const cellStyles: React.CSSProperties = {
     width: "calc(100% / 20)",
     height: "calc(100% / 20)",
@@ -29,7 +27,9 @@ function Cell({ isAlive, coord, dispatch }: CellProps) {
             }
             style={{
                 ...cellStyles,
-                ...{ backgroundColor: isAlive ? ALIVE_BG : "transparent" },
+                ...{
+                    backgroundColor: isAlive ? "var(--green)" : "transparent",
+                },
             }}
         ></div>
     );
