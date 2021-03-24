@@ -97,7 +97,11 @@ function App() {
 
     return (
         <div className="container">
-            <h1 style={{ color: "red" }}>Game of Life</h1>
+            <h1 style={{ color: "red", marginBottom: "0" }}>Game of Life</h1>
+            <p style={{ color: "white" }}>
+                Make a shape. Then click on{" "}
+                <span style={{ background: "green" }}>Tick</span>
+            </p>
             <div style={matrixContainer}>
                 {state.matrix.map((row, i) =>
                     row.map((num, j) => {
