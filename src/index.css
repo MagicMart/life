@@ -66,3 +66,9 @@ body {
 #myRange {
     margin-left: 10px;
 }
+
+h1 {
+    font-family: "Press Start 2P", "Courier New", Courier, monospace;
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+}
