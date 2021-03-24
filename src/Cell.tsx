@@ -28,7 +28,7 @@ function Cell({ isAlive, coord, dispatch }: CellProps) {
             style={{
                 ...cellStyles,
                 ...{
-                    backgroundColor: isAlive ? "green" : "transparent",
+                    backgroundColor: isAlive ? "green" : "var(--cell-bg)",
                 },
             }}
         ></div>
