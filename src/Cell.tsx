@@ -1,8 +1,8 @@
 import React from "react";
 
 const cellStyles: React.CSSProperties = {
-    width: "calc(100% / 20)",
-    height: "calc(100% / 20)",
+    width: "var(--cell-size)",
+    height: "var(--cell-size)",
     outline: "1px solid black",
 };
 

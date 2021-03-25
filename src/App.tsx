@@ -8,16 +8,15 @@ const MAX_RANGE = 900;
 const MIN_RANGE = 100;
 const MID_RANGE = (MAX_RANGE + MIN_RANGE) / 2;
 const STEP = MIN_RANGE;
+const GRID_SIZE = 20;
 
-const matrix: Matrix = Array.from({ length: 20 }, () =>
-    Array.from({ length: 20 }, () => 0)
+const matrix: Matrix = Array.from({ length: GRID_SIZE }, () =>
+    Array.from({ length: GRID_SIZE }, () => 0)
 );
 
 const matrixContainer: React.CSSProperties = {
-    display: "flex",
-    flexWrap: "wrap",
-    width: "300px",
-    height: "300px",
+    display: "grid",
+    gridTemplateColumns: `repeat(${GRID_SIZE}, var(--cell-size))`,
     outline: "2px solid black",
     margin: "0 auto",
 };

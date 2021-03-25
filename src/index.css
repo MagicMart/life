@@ -11,6 +11,7 @@ html {
 :root {
     --background: #292725;
     --cell-bg: #faebd7;
+    --cell-size: 15px;
 }
 
 html,
