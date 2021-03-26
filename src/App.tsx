@@ -4,10 +4,10 @@ import { lifeOrDeath, Matrix } from "./lifeOrDeath";
 
 // the range slider values.
 // the speed (setInterval ms) mirrors its values
-const MAX_RANGE = 900;
-const MIN_RANGE = 100;
-const MID_RANGE = (MAX_RANGE + MIN_RANGE) / 2;
-const STEP = MIN_RANGE;
+const STEP = 50;
+const MAX_RANGE = STEP * 11;
+const MIN_RANGE = STEP;
+const MID_RANGE = MAX_RANGE / 2;
 const GRID_SIZE = 20;
 
 const matrix: Matrix = Array.from({ length: GRID_SIZE }, () =>
