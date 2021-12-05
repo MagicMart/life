@@ -4,7 +4,7 @@ import App from "./App";
 
 describe("App", () => {
     test("renders App component", () => {
-        const { debug } = render(<App />);
-        debug();
+        const result = render(<App />);
+        expect(result).toBeTruthy();
     });
 });

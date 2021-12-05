@@ -78,7 +78,6 @@ function App() {
     const timerID: { current: number | undefined } = React.useRef();
 
     React.useEffect(() => {
-        console.log("use effect");
         if (!state.ticking) return;
         timerID.current = window.setInterval(
             () =>

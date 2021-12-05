@@ -16,7 +16,6 @@ interface CellProps {
 }
 
 function Cell({ isAlive, coord, dispatch }: CellProps) {
-    console.log("cell");
     return (
         <div
             onClick={() =>
