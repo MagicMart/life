@@ -11,7 +11,7 @@ export function lifeOrDeath(dataMatrix: Matrix): Matrix {
      * is outside the matrix. If it is,
      * it evaluates to the opposite side of the matrix
      */
-    function checkEdge(coord: number): number {
+    function mayBeTransport(coord: number): number {
         if (coord < 0) return size;
 
         if (coord > size) return 0;
@@ -27,14 +27,14 @@ export function lifeOrDeath(dataMatrix: Matrix): Matrix {
              * (in clockwise order)
              */
             const sum =
-                dataMatrix[checkEdge(i - 1)][j] +
-                dataMatrix[checkEdge(i - 1)][checkEdge(j + 1)] +
-                dataMatrix[i][checkEdge(j + 1)] +
-                dataMatrix[checkEdge(i + 1)][checkEdge(j + 1)] +
-                dataMatrix[checkEdge(i + 1)][j] +
-                dataMatrix[checkEdge(i + 1)][checkEdge(j - 1)] +
-                dataMatrix[i][checkEdge(j - 1)] +
-                dataMatrix[checkEdge(i - 1)][checkEdge(j - 1)];
+                dataMatrix[mayBeTransport(i - 1)][j] +
+                dataMatrix[mayBeTransport(i - 1)][mayBeTransport(j + 1)] +
+                dataMatrix[i][mayBeTransport(j + 1)] +
+                dataMatrix[mayBeTransport(i + 1)][mayBeTransport(j + 1)] +
+                dataMatrix[mayBeTransport(i + 1)][j] +
+                dataMatrix[mayBeTransport(i + 1)][mayBeTransport(j - 1)] +
+                dataMatrix[i][mayBeTransport(j - 1)] +
+                dataMatrix[mayBeTransport(i - 1)][mayBeTransport(j - 1)];
 
             // apply the rules of the Conway's game of life.
             // https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
