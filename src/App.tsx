@@ -95,59 +95,103 @@ function App() {
 
     return (
         <div className="container">
+            <Title />
+            <div style={matrixContainer}>
+                <DisplayMatrix state={state} dispatch={dispatch} />
+            </div>
+            <div style={{ display: "flex", marginTop: "20px" }}>
+                <ToggleTicking state={state} dispatch={dispatch} />
+                <RangeSlider state={state} dispatch={dispatch} />
+            </div>
+        </div>
+    );
+}
+
+export function Title() {
+    return (
+        <>
             <h1 style={{ color: "red", marginBottom: "0" }}>Game of Life</h1>
             <p style={{ color: "white" }}>
                 Make a shape. Then click on{" "}
                 <span style={{ background: "green" }}>Tick</span>
             </p>
-            <div style={matrixContainer}>
-                {state.matrix.map((row, i) =>
-                    row.map((num, j) => {
-                        return (
-                            <Cell
-                                key={`${[i, j]}`}
-                                coord={[i, j]}
-                                dispatch={dispatch}
-                                isAlive={num === 1 ? true : false}
-                            />
-                        );
-                    })
-                )}
-            </div>
-            <div style={{ display: "flex", marginTop: "20px" }}>
-                <button
-                    onClick={() =>
-                        dispatch({
-                            type: "TOGGLE_TICKING",
-                        })
-                    }
-                    className="myButton"
-                    style={
-                        state.ticking
-                            ? { background: "red" }
-                            : { background: "green" }
-                    }
-                >
-                    Tick
-                </button>
-                <input
-                    type="range"
-                    min={MIN_RANGE}
-                    max={MAX_RANGE}
-                    step={STEP}
-                    onChange={(e) =>
-                        dispatch({
-                            type: "SET_RANGE_VALUE_&_SPEED",
-                            payload: Number(e.target.value),
-                        })
-                    }
-                    value={state.range_value}
-                    className="slider"
-                    id="myRange"
-                    aria-label="change speed"
-                />
-            </div>
-        </div>
+        </>
+    );
+}
+
+export function DisplayMatrix({
+    state,
+    dispatch,
+}: {
+    state: AppState;
+    dispatch: React.Dispatch<Action>;
+}) {
+    return (
+        <>
+            {state.matrix.map((row, i) =>
+                row.map((num, j) => {
+                    return (
+                        <Cell
+                            key={`${[i, j]}`}
+                            coord={[i, j]}
+                            dispatch={dispatch}
+                            isAlive={num === 1 ? true : false}
+                        />
+                    );
+                })
+            )}
+        </>
+    );
+}
+
+export function RangeSlider({
+    state,
+    dispatch,
+}: {
+    state: AppState;
+    dispatch: React.Dispatch<Action>;
+}) {
+    return (
+        <input
+            type="range"
+            min={MIN_RANGE}
+            max={MAX_RANGE}
+            step={STEP}
+            onChange={(e) =>
+                dispatch({
+                    type: "SET_RANGE_VALUE_&_SPEED",
+                    payload: Number(e.target.value),
+                })
+            }
+            value={state.range_value}
+            className="slider"
+            id="myRange"
+            aria-label="change speed"
+        />
+    );
+}
+
+export function ToggleTicking({
+    state,
+    dispatch,
+}: {
+    state: AppState;
+    dispatch: React.Dispatch<Action>;
+}) {
+    return (
+        <button
+            onClick={() =>
+                dispatch({
+                    type: "TOGGLE_TICKING",
+                })
+            }
+            className="myButton"
+            style={
+                state.ticking ? { background: "red" } : { background: "green" }
+            }
+        >
+            Tick
+        </button>
     );
 }
 
