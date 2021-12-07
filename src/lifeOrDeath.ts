@@ -27,13 +27,10 @@ export function lifeOrDeath(dataMatrix: Matrix): Matrix {
 
             // apply the rules of the Conway's game of life.
             // https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-            if (sum === 3) {
-                return 1;
-            } else if (sum === 2) {
-                return current;
-            } else {
-                return 0;
-            }
+            if (sum === 3) return 1;
+            if (sum === 2) return current;
+            return 0;
+
         });
     });
 }
