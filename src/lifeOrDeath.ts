@@ -16,17 +16,17 @@ export function mayBeTransport(coord: number, size: number): number {
  * Applies the rules of the "game of life" to the current matrix
  * and returns the new matrix
  */
-export function lifeOrDeath(dataMatrix: Matrix): Matrix {
-    const size = dataMatrix[0].length - 1;
+export function lifeOrDeath(matrix: Matrix): Matrix {
+    const size = matrix[0].length - 1;
 
     /**nextMatrix will be the next state of dataMatrix
     as determined by the rules */
-    return dataMatrix.map((row, i): (0 | 1)[] => {
-        return row.map((current, j): 0 | 1 => {
-            const sum = sumSurroundingCells(dataMatrix, [i, j], size);
+    return matrix.map((row, i): (0 | 1)[] =>
+        row.map((current, j): 0 | 1 => {
+            const sum = sumSurroundingCells(matrix, [i, j], size);
             return applyTheRules(sum, current);
-        });
-    });
+        })
+    );
 }
 
 /**
