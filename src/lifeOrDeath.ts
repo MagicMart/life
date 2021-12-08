@@ -18,9 +18,6 @@ export function mayBeTransport(coord: number, size: number): number {
  */
 export function lifeOrDeath(matrix: Matrix): Matrix {
     const size = matrix[0].length - 1;
-
-    /**nextMatrix will be the next state of dataMatrix
-    as determined by the rules */
     return matrix.map((row, i): (0 | 1)[] =>
         row.map((current, j): 0 | 1 => {
             const sum = sumSurroundingCells(matrix, [i, j], size);
