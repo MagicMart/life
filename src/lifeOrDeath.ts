@@ -24,22 +24,13 @@ export function lifeOrDeath(dataMatrix: Matrix): Matrix {
     return dataMatrix.map((row, i): (0 | 1)[] => {
         return row.map((current, j): 0 | 1 => {
             const sum = sumSurroundingCells(dataMatrix, [i, j], size);
-
-            // apply the rules of the Conway's game of life.
-            // https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-            if (sum === 3) {
-                return 1;
-            } else if (sum === 2) {
-                return current;
-            } else {
-                return 0;
-            }
+            return applyTheRules(sum, current);
         });
     });
 }
 
-/** sum is the sum of values in the surrounding cells
- * (in clockwise order)
+/**
+ * Sums the surrounding cells of the current cell
  */
 export function sumSurroundingCells(
     dataMatrix: Matrix,
@@ -120,4 +111,18 @@ export function getTopLeft(
     size: number
 ): number {
     return dataMatrix[mayBeTransport(i - 1, size)][mayBeTransport(j - 1, size)];
+}
+
+/**
+ * Applies the rules of the "game of life" to the current cell
+ * https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+ */
+export function applyTheRules(sum: number, current: 0 | 1): 0 | 1 {
+    if (sum === 3) {
+        return 1;
+    } else if (sum === 2) {
+        return current;
+    } else {
+        return 0;
+    }
 }
