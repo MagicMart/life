@@ -34,80 +34,16 @@ export function sumSurroundingCells(
     [i, j]: [number, number],
     size: number
 ) {
-    return (
-        getTop(dataMatrix, [i, j], size) +
-        getTopRight(dataMatrix, [i, j], size) +
-        getRight(dataMatrix, [i, j], size) +
-        getBottomRight(dataMatrix, [i, j], size) +
-        getBottom(dataMatrix, [i, j], size) +
-        getBottomLeft(dataMatrix, [i, j], size) +
-        getLeft(dataMatrix, [i, j], size) +
-        getTopLeft(dataMatrix, [i, j], size)
-    );
-}
-
-export function getTop(
-    dataMatrix: Matrix,
-    [i, j]: [number, number],
-    size: number
-): number {
-    return dataMatrix[mayBeTransport(i - 1, size)][j];
-}
-
-export function getTopRight(
-    dataMatrix: Matrix,
-    [i, j]: [number, number],
-    size: number
-): number {
-    return dataMatrix[mayBeTransport(i - 1, size)][mayBeTransport(j + 1, size)];
-}
-
-export function getRight(
-    dataMatrix: Matrix,
-    [i, j]: [number, number],
-    size: number
-): number {
-    return dataMatrix[i][mayBeTransport(j + 1, size)];
-}
-
-export function getBottomRight(
-    dataMatrix: Matrix,
-    [i, j]: [number, number],
-    size: number
-): number {
-    return dataMatrix[mayBeTransport(i + 1, size)][mayBeTransport(j + 1, size)];
-}
-
-export function getBottom(
-    dataMatrix: Matrix,
-    [i, j]: [number, number],
-    size: number
-): number {
-    return dataMatrix[mayBeTransport(i + 1, size)][j];
-}
-
-export function getBottomLeft(
-    dataMatrix: Matrix,
-    [i, j]: [number, number],
-    size: number
-): number {
-    return dataMatrix[mayBeTransport(i + 1, size)][mayBeTransport(j - 1, size)];
-}
-
-export function getLeft(
-    dataMatrix: Matrix,
-    [i, j]: [number, number],
-    size: number
-): number {
-    return dataMatrix[i][mayBeTransport(j - 1, size)];
-}
-
-export function getTopLeft(
-    dataMatrix: Matrix,
-    [i, j]: [number, number],
-    size: number
-): number {
-    return dataMatrix[mayBeTransport(i - 1, size)][mayBeTransport(j - 1, size)];
+    let sum = 0;
+    sum += dataMatrix[mayBeTransport(i - 1, size)][j];
+    sum += dataMatrix[mayBeTransport(i - 1, size)][mayBeTransport(j + 1, size)];
+    sum += dataMatrix[i][mayBeTransport(j + 1, size)];
+    sum += dataMatrix[mayBeTransport(i + 1, size)][mayBeTransport(j + 1, size)];
+    sum += dataMatrix[mayBeTransport(i + 1, size)][j];
+    sum += dataMatrix[mayBeTransport(i + 1, size)][mayBeTransport(j - 1, size)];
+    sum += dataMatrix[i][mayBeTransport(j - 1, size)];
+    sum += dataMatrix[mayBeTransport(i - 1, size)][mayBeTransport(j - 1, size)];
+    return sum;
 }
 
 /**
