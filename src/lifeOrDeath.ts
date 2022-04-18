@@ -5,7 +5,7 @@ export type Matrix = DeadOrAlive[][];
  * is outside the matrix. If it is,
  * it evaluates to the opposite side of the matrix
  */
-export function mayBeTransport(coord: number, size: number): number {
+export function mayBeTransport(coord: number, size: number) {
     if (coord < 0) return size;
 
     if (coord > size) return 0;
@@ -17,10 +17,10 @@ export function mayBeTransport(coord: number, size: number): number {
  * Applies the rules of the "game of life" to the current matrix
  * and returns the new matrix
  */
-export function lifeOrDeath(matrix: Matrix): Matrix {
+export function lifeOrDeath(matrix: Matrix) {
     const size = matrix[0].length - 1;
-    return matrix.map((row, i): DeadOrAlive[] =>
-        row.map((current, j): DeadOrAlive => {
+    return matrix.map((row, i) =>
+        row.map((current, j) => {
             const sum = sumSurroundingCells(matrix, [i, j], size);
             return applyTheRules(sum, current);
         })
@@ -51,7 +51,7 @@ export function sumSurroundingCells(
  * Applies the rules of the "game of life" to the current cell
  * https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
  */
-export function applyTheRules(sum: number, current: DeadOrAlive): DeadOrAlive {
+export function applyTheRules(sum: number, current: DeadOrAlive) {
     if (sum === 3) {
         return 1;
     } else if (sum === 2) {
